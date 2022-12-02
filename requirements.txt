@@ -1,0 +1,11 @@
+asyncio==3.4.3
+cffi==1.15.1
+cyberpi==0.0.7
+gevent==22.10.2
+greenlet==2.0.1
+makeblock==0.1.8
+pycparser==2.21
+pyserial==3.5
+websocket-server==0.6.4
+zope.event==4.5.0
+zope.interface==5.5.1
