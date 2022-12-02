@@ -15,14 +15,15 @@ def on_message(client, server,message):
     if(message == "forward"):
         cyberpi.mbot2.EM_set_speed(10,"em1")
         cyberpi.mbot2.EM_set_speed(-10,"em2")
-        return
     elif(message=="backward"):
         cyberpi.mbot2.EM_set_speed(-10,"em1")
         cyberpi.mbot2.EM_set_speed(10,"em2")        
-        return
     elif(message=="stop"):
         cyberpi.mbot2.EM_set_speed(0,"all")
-        return
+
+    distance = cyberpi.ultrasonic2.get()
+    print(distance)
+    server.send_message(client,str(distance))
     return
 
 server = WebsocketServer("localhost",9999)
