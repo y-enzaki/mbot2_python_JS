@@ -4,7 +4,11 @@ let senddata = {};
 let recvdata = {};
 ws.onmessage = function (message) {
     log = log + "<br>" + message.data;
-    document.getElementById("txt").innerHTML = log;
+    //document.getElementById("txt").innerHTML = log;
+
+        recvdata = JSON.parse(message.data);
+    document.getElementById("txt").innerHTML = recvdata["enc1"];
+    
 }
 document.getElementById("forward").addEventListener("click", function () {
     let com = { command: "forward" };
@@ -14,6 +18,7 @@ document.getElementById("forward").addEventListener("click", function () {
 document.getElementById("stop").addEventListener("click", function () {
     let com = { command: "stop" };
     ws.send(JSON.stringify(com));
+
     //ws.send("stop");
 });
 document.getElementById("backward").addEventListener("click", function () {
@@ -42,4 +47,16 @@ document.getElementById("reset").addEventListener("click", function () {
     let com = { command: "reset" };
     ws.send(JSON.stringify(com));
     //ws.send("backward");
+});
+function loop() {
+    let com = {
+        command: "setpower",
+        power1: 0,
+    power2:0,
+    };
+    ws.send(JSON.stringify(com));
+}
+document.getElementById("virtual").addEventListener("click", function () {
+        setInterval(loop,20);
+
 });
