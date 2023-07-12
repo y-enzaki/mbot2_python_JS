@@ -1,4 +1,4 @@
-import cyberpi
+
 
 from websocket_server import WebsocketServer
 from datetime import datetime
@@ -9,8 +9,6 @@ def new_client(client, server):
     sendmessage =datetime.now().isoformat() + ": new client joined!"
     server.send_message(client,sendmessage)
     print(sendmessage)
-    cyberpi.console.print("connected!\n")
-
     return
 
 def on_message(client, server,message):
@@ -20,20 +18,18 @@ def on_message(client, server,message):
     #recvdata={}
     if("command" in recvdata):
         if(recvdata["command"] == "forward"):
-            cyberpi.mbot2.EM_set_speed(10,"em1")
-            cyberpi.mbot2.EM_set_speed(-10,"em2")
+            pass
         elif(recvdata["command"]=="backward"):
-            cyberpi.mbot2.EM_set_speed(-10,"em1")
-            cyberpi.mbot2.EM_set_speed(10,"em2")        
+            pass
         elif(recvdata["command"]=="stop"):
-            cyberpi.mbot2.EM_stop("all")
+            pass
         elif(recvdata["command"]=="reset"):
-            cyberpi.mbot2.EM_reset_angle("all")
+            pass
         elif(recvdata["command"]=="setpower"):
             if("power1" in recvdata):
-                cyberpi.mbot2.EM_set_power(recvdata["power1"],"em1")
+                pass
             if("power2" in recvdata):
-                cyberpi.mbot2.EM_set_power(recvdata["power2"],"em2")
+                pass
         elif(recvdata["command"]=="turn"):
             speed1 = 10
             speed2 = 10
@@ -42,13 +38,13 @@ def on_message(client, server,message):
             if("speed2" in recvdata):
                 speed2=recvdata["speed2"]
             if("angle1" in recvdata):
-                cyberpi.mbot2.EM_turn(recvdata["angle1"],speed1,"em1")
+                pass
             if("angle2" in recvdata):
-                cyberpi.mbot2.EM_turn(recvdata["angle2"],speed2,"em2")   
+                pass   
 
-    distance = cyberpi.ultrasonic2.get()
-    enc1 = cyberpi.mbot2.EM_get_angle("em1")
-    enc2 = cyberpi.mbot2.EM_get_angle("em2")
+    distance = 100
+    enc1 = datetime.now().second
+    enc2 = 354
     stat = {
         "usdis":distance,
         "enc1":enc1,
