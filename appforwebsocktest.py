@@ -43,7 +43,7 @@ def on_message(client, server,message):
                 pass   
 
     distance = 100
-    enc1 = datetime.now().second
+    enc1 = datetime.now().microsecond*0.0001-50
     enc2 = 354
     stat = {
         "usdis":distance,
