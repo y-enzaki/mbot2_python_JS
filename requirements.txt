@@ -1,7 +1,7 @@
 asyncio==3.4.3
 cffi==1.15.1
 cyberpi==0.0.7
-gevent==22.10.2
+gevent==23.9.1
 greenlet==2.0.1
 makeblock==0.1.8
 pycparser==2.21
