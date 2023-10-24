@@ -9,6 +9,7 @@ def new_client(client, server):
     sendmessage =datetime.now().isoformat() + ": new client joined!"
     server.send_message(client,sendmessage)
     print(sendmessage)
+
     cyberpi.console.print("connected!\n")
 
     return
@@ -30,10 +31,12 @@ def on_message(client, server,message):
         elif(recvdata["command"]=="reset"):
             cyberpi.mbot2.EM_reset_angle("all")
         elif(recvdata["command"]=="setpower"):
-            if("power1" in recvdata):
-                cyberpi.mbot2.EM_set_power(recvdata["power1"],"em1")
-            if("power2" in recvdata):
-                cyberpi.mbot2.EM_set_power(recvdata["power2"],"em2")
+            # if("power1" in recvdata ):
+            #     cyberpi.mbot2.EM_set_power(recvdata["power1"],"em1")
+            # if("power2" in recvdata):
+            #     cyberpi.mbot2.EM_set_power(recvdata["power2"],"em2")
+            if(("power1" in recvdata ) & ("power1" in recvdata )):
+                cyberpi.mbot2.drive_power(recvdata["power1"], recvdata["power2"])
         elif(recvdata["command"]=="turn"):
             speed1 = 10
             speed2 = 10
@@ -46,11 +49,11 @@ def on_message(client, server,message):
             if("angle2" in recvdata):
                 cyberpi.mbot2.EM_turn(recvdata["angle2"],speed2,"em2")   
 
-    distance = cyberpi.ultrasonic2.get()
+    #distance = cyberpi.ultrasonic2.get()
     enc1 = cyberpi.mbot2.EM_get_angle("em1")
     enc2 = cyberpi.mbot2.EM_get_angle("em2")
     stat = {
-        "usdis":distance,
+        #"usdis":distance,
         "enc1":enc1,
         "enc2":enc2,
     }
